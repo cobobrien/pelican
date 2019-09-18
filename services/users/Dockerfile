@@ -26,3 +26,7 @@ COPY . /usr/src/app
 # new
 # run server
 CMD ["/usr/src/app/entrypoint.sh"]
+
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
