@@ -35,7 +35,7 @@ class App extends Component {
       this.setState({ username: '', email: '' });
     })
     .catch((err) => { console.log(err); });
-  };  
+  };
   handleChange(event) {
     const obj = {};
     obj[event.target.name] = event.target.value;

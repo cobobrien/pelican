@@ -13,10 +13,10 @@ services:
       - APP_SETTINGS=project.config.ProductionConfig
       - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_prod
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
-    depends_on:  # new
+    depends_on:
       - users-db
 
-  users-db:  # new
+  users-db:
     build:
       context: ./services/users/project/db
       dockerfile: Dockerfile
@@ -27,11 +27,24 @@ services:
       - POSTGRES_PASSWORD=postgres
 
   nginx:
-    build:
-      context: ./services/nginx
-      dockerfile: Dockerfile-prod
+    container_name: nginx
+    build: ./services/nginx
     restart: always
     ports:
       - 80:80
+    depends_on:
+      - users
+      - client  
+
+  client:
+    container_name: client
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile-prod
+      args:
+        - NODE_ENV=production
+        - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
+    ports:
+      - '3007:80'
     depends_on:
       - users
