@@ -26,6 +26,7 @@ class TestDevelopmentConfig(TestCase):
         )
         self.assertTrue(app.config['DEBUG_TB_ENABLED'])
 
+
 class TestTestingConfig(TestCase):
     def create_app(self):
         app.config.from_object('project.config.TestingConfig')
@@ -41,6 +42,7 @@ class TestTestingConfig(TestCase):
         )
         self.assertFalse(app.config['DEBUG_TB_ENABLED'])
 
+
 class TestProductionConfig(TestCase):
     def create_app(self):
         app.config.from_object('project.config.ProductionConfig')
@@ -50,6 +52,7 @@ class TestProductionConfig(TestCase):
         self.assertTrue(app.config['SECRET_KEY'] == 'my_precious')
         self.assertFalse(app.config['TESTING'])
         self.assertFalse(app.config['DEBUG_TB_ENABLED'])
+
 
 if __name__ == '__main__':
     unittest.main()
