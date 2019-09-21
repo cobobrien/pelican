@@ -1,6 +1,5 @@
 from sqlalchemy.sql import func
 from project import db, bcrypt
-from project import db
 from flask import current_app
 
 
@@ -21,7 +20,6 @@ class User(db.Model):
         self.password = bcrypt.generate_password_hash(
             password, current_app.config.get('BCRYPT_LOG_ROUNDS')
         ).decode()
-
 
     def to_json(self):
         return {
