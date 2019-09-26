@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import About from './components/About';
 import UsersList from './components/UsersList';
-import AddUser from './components/AddUser';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Form from './components/Form';
@@ -106,18 +105,9 @@ class App extends Component {
                 <br/>
                 <Switch>
                   <Route exact path='/' render={() => (
-                    <div>
-                      <h1 className="title is-1">All Users</h1>
-                      <hr/><br/>
-                      <AddUser
-                        username={this.state.username}
-                        email={this.state.email}
-                        addUser={this.addUser}
-                        handleChange={this.handleChange}
-                      />
-                      <br/><br/>
-                      <UsersList users={this.state.users}/>
-                    </div>
+                    <UsersList
+                      users={this.state.users}
+                    />
                   )} />
                   <Route exact path='/about' component={About}/>
                   <Route exact path='/register' render={() => (
