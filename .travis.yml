@@ -17,8 +17,7 @@ before_script:
   - docker-compose up -d --build
 
 script:
-  - docker-compose exec users python manage.py test
-  - docker-compose exec users flake8 project
+  - bash test.sh
 
 after_script:
   - docker-compose down
