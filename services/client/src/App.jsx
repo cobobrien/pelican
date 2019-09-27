@@ -21,7 +21,7 @@ class App extends Component {
         email: '',
         password: ''
       },
-      isAuthenticated: false,
+      isAuthenticated: localStorage.getItem('authToken') ? true : false,
     };
     this.addUser = this.addUser.bind(this);
     this.handleChange = this.handleChange.bind(this);
