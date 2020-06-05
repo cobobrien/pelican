@@ -32,7 +32,6 @@ def create_app(script_info=None):
     migrate.init_app(app, db)
     bcrypt.init_app(app)
 
-
     # register blueprints
     from project.api.users import users_blueprint
 
